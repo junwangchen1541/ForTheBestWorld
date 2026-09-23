@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>策略擂台</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="demo-data.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#overview" aria-label="策略擂台首页">
+        <span class="brand-mark">策</span>
+        <span>策略擂台</span>
+      </a>
+      <div class="topbar-status">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span id="data-status">回测数据</span>
+        <span class="separator" aria-hidden="true"></span>
+        <span id="as-of-date">--</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="overview band" id="overview">
+      <div class="content">
+        <div class="overview-heading">
+          <div>
+            <p class="eyebrow">三种模型 × 两种训练股票池</p>
+            <h1>六组模型实验</h1>
+          </div>
+          <p class="period" id="period-label">--</p>
+        </div>
+        <div class="metric-grid" id="summary-metrics" aria-label="联赛摘要"></div>
+      </div>
+    </section>
+
+    <section class="band section" aria-labelledby="performance-title">
+      <div class="content">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">六组样本外净值</p>
+            <h2 id="performance-title">模型与训练池比较</h2>
+          </div>
+          <div class="chart-legend" id="chart-legend" aria-label="图例"></div>
+        </div>
+        <div class="chart-wrap">
+          <svg id="performance-chart" role="img" aria-labelledby="performance-title chart-description"></svg>
+          <p id="chart-description" class="sr-only">各策略累计净值随时间变化的折线图</p>
+          <div class="chart-tooltip" id="chart-tooltip" role="tooltip" hidden></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band section muted-band" aria-labelledby="ranking-title">
+      <div class="content split-layout">
+        <div>
+          <div class="section-heading compact">
+            <div>
+              <p class="eyebrow">实时名次</p>
+              <h2 id="ranking-title">排行榜</h2>
+            </div>
+          </div>
+          <div class="table-scroll">
+            <table class="data-table ranking-table">
+              <thead>
+                <tr>
+                  <th>排名 / 策略</th>
+                  <th class="number">账户净值</th>
+                  <th class="number">累计收益</th>
+                  <th class="number">最大回撤</th>
+                  <th class="number">夏普比率</th>
+                </tr>
+              </thead>
+              <tbody id="ranking-body"></tbody>
+            </table>
+          </div>
+        </div>
+        <aside class="activity-panel" aria-labelledby="activity-title">
+          <div class="section-heading compact">
+            <div>
+              <p class="eyebrow">最近成交</p>
+              <h2 id="activity-title">场上动态</h2>
+            </div>
+          </div>
+          <div id="recent-activity" class="activity-list"></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="band section" aria-labelledby="portfolio-title">
+      <div class="content">
+        <div class="section-heading strategy-heading">
+          <div>
+            <p class="eyebrow">公开账户</p>
+            <h2 id="portfolio-title">持仓与交易</h2>
+          </div>
+          <div class="strategy-tabs" id="strategy-tabs" role="tablist" aria-label="选择模型实验"></div>
+        </div>
+
+        <div class="strategy-summary" id="strategy-summary" aria-live="polite"></div>
+
+        <div class="detail-grid">
+          <div>
+            <div class="subheading">
+              <h3>当前持仓</h3>
+              <span id="holding-count">0 只</span>
+            </div>
+            <div class="table-scroll">
+              <table class="data-table holding-table">
+                <thead>
+                  <tr>
+                    <th>股票</th>
+                    <th class="number">持股</th>
+                    <th class="number">现价</th>
+                    <th class="number">市值</th>
+                    <th class="number">仓位</th>
+                    <th class="number">评分排名</th>
+                  </tr>
+                </thead>
+                <tbody id="holdings-body"></tbody>
+              </table>
+            </div>
+          </div>
+          <div>
+            <div class="subheading">
+              <h3>成交记录</h3>
+              <span>全部成交</span>
+            </div>
+            <div class="table-scroll trade-scroll">
+              <table class="data-table trade-table">
+                <thead>
+                  <tr>
+                    <th>日期</th>
+                    <th>方向</th>
+                    <th>股票</th>
+                    <th class="number">数量</th>
+                    <th class="number">价格</th>
+                    <th class="number">费用</th>
+                  </tr>
+                </thead>
+                <tbody id="trades-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="content footer-inner">
+      <span>全组使用同一沪深300样本外测试期；研究用途，不构成投资建议</span>
+      <span id="generated-at">--</span>
+    </div>
+  </footer>
+</body>
+</html>

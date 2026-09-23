@@ -1,0 +1,30 @@
+[portfolio]
+initial_cash = 200000.0
+holding_count = 10
+min_replacements = 1
+max_replacements = 2
+lot_size = 100
+commission_rate = 0.0003
+minimum_commission = 5.0
+stamp_duty_rate = 0.0005
+
+[strategy]
+minimum_history = 121
+minimum_price = 2.0
+minimum_daily_amount = 20000000.0
+momentum_20_weight = 0.25
+momentum_60_weight = 0.30
+momentum_120_weight = 0.25
+low_volatility_weight = 0.10
+low_drawdown_weight = 0.10
+
+[backtest]
+start_date = "2024-01-02"
+end_date = "2026-09-22"
+benchmark_symbol = "000300"
+
+[model]
+training_end_date = "2023-12-29"
+target_horizon_days = 20
+minimum_training_samples = 500
+laya_calibration_samples = 256
